@@ -70,8 +70,13 @@ public class Course extends Model {
     }
 
     public float getAverage() {
-        // TODO: Calculate and return the average of the points
-        return 0;
+        ArrayList<Enrollment> enrollments = this.getEnrollments();
+        float sum = 0;
+        for (Enrollment enrollment: enrollments)
+            sum += enrollment.getGrade();
+        if (enrollments.size() == 0)
+            return 0;
+        return (float)sum / enrollments.size();
     }
 
     public String getStudents() {
