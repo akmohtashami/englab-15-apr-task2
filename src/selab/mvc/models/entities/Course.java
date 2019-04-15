@@ -3,9 +3,10 @@ package selab.mvc.models.entities;
 import selab.mvc.models.Model;
 import sun.misc.Regexp;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class Course implements Model {
+public class Course extends Model {
     private String title;
     private String courseNo;
     private String startTime = null;

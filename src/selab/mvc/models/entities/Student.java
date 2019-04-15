@@ -2,9 +2,10 @@ package selab.mvc.models.entities;
 
 import selab.mvc.models.Model;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class Student implements Model {
+public class Student extends Model {
     private String name;
     private String studentNo;
 
