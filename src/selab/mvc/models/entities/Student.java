@@ -25,14 +25,25 @@ public class Student extends Model {
     }
     public String getStudentNo() { return this.studentNo; }
 
+    private ArrayList<Enrollment> getEnrollments() {
+        ArrayList<Enrollment> enrollments = new ArrayList<>();
+        for (Enrollment enrollment: this.getDataContext().getEnrollments().getAll())
+            if (enrollment.getStudent() == this)
+                enrollments.add(enrollment);
+        return enrollments;
+    }
+
     public float getAverage() {
         // TODO: Calculate and return the average of the points
         return 0;
     }
 
     public String getCourses() {
-        // TODO: Return a comma separated list of course names
-        return "-";
+        ArrayList<Enrollment> enrollments = this.getEnrollments();
+        ArrayList<String> courseNames = new ArrayList<>();
+        for (Enrollment enrollment: enrollments)
+            courseNames.add(enrollment.getCourse().getTitle());
+        return String.join(",", courseNames);
     }
 
     /**

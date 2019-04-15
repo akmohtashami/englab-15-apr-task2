@@ -61,14 +61,25 @@ public class Course extends Model {
         return this.weekday.name();
     }
 
+    private ArrayList<Enrollment> getEnrollments() {
+        ArrayList<Enrollment> enrollments = new ArrayList<>();
+        for (Enrollment enrollment: this.getDataContext().getEnrollments().getAll())
+            if (enrollment.getCourse() == this)
+                enrollments.add(enrollment);
+        return enrollments;
+    }
+
     public float getAverage() {
         // TODO: Calculate and return the average of the points
         return 0;
     }
 
     public String getStudents() {
-        // TODO: Return a comma separated list of student names
-        return "-";
+        ArrayList<Enrollment> enrollments = this.getEnrollments();
+        ArrayList<String> studentNames = new ArrayList<>();
+        for (Enrollment enrollment: enrollments)
+            studentNames.add(enrollment.getStudent().getName());
+        return String.join(",", studentNames);
     }
 
     /**
