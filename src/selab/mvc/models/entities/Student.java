@@ -60,4 +60,12 @@ public class Student extends Model {
         Pattern pattern = Pattern.compile("^[8-9]\\d{7}$");
         return pattern.matcher(studentNo).find();
     }
+
+    @Override
+    public void remove() {
+        for (Enrollment enrollment: this.getEnrollments())
+            enrollment.remove();
+        super.remove();
+
+    }
 }

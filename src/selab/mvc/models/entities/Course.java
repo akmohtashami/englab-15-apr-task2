@@ -126,4 +126,12 @@ public class Course extends Model {
         else
             return -1;
     }
+
+    @Override
+    public void remove() {
+        for (Enrollment enrollment: this.getEnrollments())
+            enrollment.remove();
+        super.remove();
+
+    }
 }

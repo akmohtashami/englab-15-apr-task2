@@ -29,9 +29,12 @@ public class RemoveStudentController extends Controller {
         JSONObject input = readJson(body);
         String studentNo = input.getString("studentNo");
 
-        // TODO: Add codes for removing the student
+        Student student = students.get(studentNo);
+        student.remove();
 
-        return null;
+        Map<String, String> result = new HashMap<>();
+        result.put("success", "true");
+        return new JsonView(new JSONObject(result));
     }
 
     @Override

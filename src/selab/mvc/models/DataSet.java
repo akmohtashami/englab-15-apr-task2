@@ -12,16 +12,27 @@ public class DataSet<T extends Model> {
         this.dataContext = dataContext;
     }
 
+    public DataContext getDataContext() {
+        return dataContext;
+    }
+
     public void add(T entity) {
         String key = entity.getPrimaryKey();
         if (set.containsKey(key))
             throw new IllegalArgumentException("Duplicate primary key.");
-        entity.bind(this.dataContext);
+        entity.bind(this);
         set.put(key, entity);
     }
 
     public T get(String key) {
         return set.get(key);
+    }
+
+    public void remove(T entity) {
+        String key = entity.getPrimaryKey();
+        if (!set.containsKey(key))
+            throw new IllegalArgumentException("No such primary key.");
+        set.remove(key);
     }
 
     public ArrayList<T> getAll() {

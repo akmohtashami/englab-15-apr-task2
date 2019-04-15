@@ -1,16 +1,25 @@
 package selab.mvc.models;
 
 public abstract class Model {
-    private DataContext dataContext = null;
-    public void bind(DataContext dataContext) {
-        if (this.dataContext != null)
+    private DataSet dataSet = null;
+    public void bind(DataSet dataSet) {
+        if (this.dataSet != null)
             throw new IllegalArgumentException("Already bound to context");
-        this.dataContext = dataContext;
+        this.dataSet = dataSet;
     }
-    protected DataContext getDataContext() {
-        if (this.dataContext == null)
+    protected DataSet getDataSet() {
+        if (this.dataSet == null)
             throw new IllegalStateException("Model not bound");
-        return this.dataContext;
+        return this.dataSet;
     }
+
+    protected DataContext getDataContext() {
+        return this.getDataSet().getDataContext();
+    }
+
     public abstract String getPrimaryKey();
+
+    public void remove() {
+        this.getDataSet().remove(this);
+    }
 }
