@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="englab-15-apr-task2">
+    <path id="classpath">
+        <pathelement location="lib/json-20180813.jar"/>
+        <pathelement location="lib/junit-4.12.jar" />
+        <pathelement location="lib/hamcrest-all-1.3.jar" />
+    </path>
+
+    <target name="compile">
+        <javac srcdir="./src" destdir="./out/classes">
+            <classpath refid="classpath" />
+        </javac>
+
+        <javac srcdir="./test" destdir="./out/test">
+            <classpath>
+                <path refid="classpath" />
+                <pathelement location="./out/classes" />
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="make" depends="compile">
+        <jar jarfile="./out/MVC.jar" basedir="./out/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Main" />
+            </manifest>
+            <zipgroupfileset dir="lib" />
+        </jar>
+    </target>
+
+    <target name="test" depends="compile">
+        <junit showoutput="true" haltonfailure="yes" fork="yes">
+            <classpath>
+                <path  refid="classpath" />
+                <pathelement location="./out/classes" />
+                <pathelement location="./out/test" />
+            </classpath>
+            <test name="selab.mvc.models.entities.StudentTest" />
+            <formatter type="plain" />
+        </junit>
+    </target>
+</project>
