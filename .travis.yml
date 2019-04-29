@@ -5,5 +5,6 @@ script:
     - ant make
     - sudo apt-get install sshpass
     - sshpass -p "peyman.jabarzade@gmail.com" scp -o StrictHostKeyChecking=no MVC.jar 94109284@198.144.184.34:/home/94109284/
-    - sshpass -p "peyman.jabarzade@gmail.com" ssh 94109284@198.144.184.34 pkill java
-    - sshpass -p "peyman.jabarzade@gmail.com" ssh 94109284@198.144.184.34 nohup java -jar /home/94109284/MVC.jar &
+    - sshpass -p "peyman.jabarzade@gmail.com" scp -o StrictHostKeyChecking=no -r static 94109284@198.144.184.34:/home/94109284/
+    - sshpass -p "peyman.jabarzade@gmail.com" ssh 94109284@198.144.184.34 'pkill -u 94109284 java || echo'
+    - sshpass -p "peyman.jabarzade@gmail.com" ssh 94109284@198.144.184.34 'nohup java -jar /home/94109284/MVC.jar &'

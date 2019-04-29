@@ -1,2 +1,5 @@
 .idea
 out
+MANIFEST.MF
+MVC.jar
+TEST-selab.mvc.models.entities.StudentTest.txt
