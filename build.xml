@@ -28,7 +28,7 @@
     </target>
 
     <target name="make" depends="compile">
-        <jar jarfile="./out/MVC.jar" basedir="./out/classes">
+        <jar jarfile="./MVC.jar" basedir="./out/classes">
             <manifest>
                 <attribute name="Main-Class" value="Main" />
             </manifest>
