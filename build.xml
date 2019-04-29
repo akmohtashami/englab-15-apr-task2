@@ -6,7 +6,15 @@
         <pathelement location="lib/hamcrest-all-1.3.jar" />
     </path>
 
-    <target name="compile">
+    <target name="clean">
+        <delete dir="out" />
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="out" />
+        <mkdir dir="out/classes" />
+        <mkdir dir="out/test" />
+
         <javac srcdir="./src" destdir="./out/classes">
             <classpath refid="classpath" />
         </javac>
